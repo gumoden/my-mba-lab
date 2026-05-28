@@ -2,16 +2,26 @@
 <html>
 <head>
     <title>Calculadora BMI</title>
+    <link rel="stylesheet" href="bmi.css" />
 </head>
 <body>
-    <h2>Calculadora BMI</h2>
+    <div class="card">
+        <h2>Calculadora BMI</h2>
 
-    <label>Peso (kg): <input id="weight" type="number" /></label><br><br>
-    <label>Altura (m): <input id="height" type="number" /></label><br><br>
+        <div class="field">
+            <label>Peso (kg)</label>
+            <input id="weight" type="number" placeholder="ex: 70" />
+        </div>
 
-    <button onclick="calculate()">Calculate</button>
+        <div class="field">
+            <label>Altura (m)</label>
+            <input id="height" type="number" placeholder="ex: 1.75" />
+        </div>
 
-    <p id="result"></p>
+        <button onclick="calculate()">Calcular</button>
+
+        <p id="result"></p>
+    </div>
 
     <script src="bmi.js"></script>
 </body>
