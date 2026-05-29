@@ -6,20 +6,52 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="card">
-            <h2>To-Do List</h2>
+        <div class="top-row">
+            <div class="card">
+                <h2>To-Do List</h2>
 
-            <div class="input-row">
-                <input id="taskInput" type="text" placeholder="Add a new task..." />
-                <button onclick="addTask()">Add</button>
+                <div class="input-group">
+                    <input id="taskInput" type="text" placeholder="Add a new task..." />
+                    <div class="input-row">
+                        <input id="taskDate" type="date" />
+                        <select id="taskPriority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        <button onclick="addTask()">Add</button>
+                    </div>
+                </div>
+
+                <ul id="taskList"></ul>
+
+                <button class="email-btn" onclick="sendByEmail()">Send list by Email</button>
             </div>
 
-            <ul id="taskList"></ul>
+            <div class="card completed-card" id="completedSection" style="display: none;">
+                <div class="completed-header">
+                    <h2>Completed</h2>
+                    <button class="archive-btn" onclick="archiveCompleted()">Archive All</button>
+                </div>
+                <ul id="completedList"></ul>
+            </div>
+        </div>
+
+        <div id="viewArchiveRow" style="display: none;">
+            <button class="view-archive-btn" onclick="toggleArchive()">View Archive</button>
+        </div>
+
+        <div class="card archived-card" id="archivedSection" style="display: none;">
+            <div class="deleted-header">
+                <h2>Archive</h2>
+                <button class="toggle-archive-btn" onclick="toggleArchive()">Hide</button>
+            </div>
+            <ul id="archivedList"></ul>
         </div>
 
         <div class="card deleted-card" id="deletedSection" style="display: none;">
             <div class="deleted-header">
-                <h2>Deleted Items</h2>
+                <h2>Deleted</h2>
                 <button onclick="purgeAll()">Purge All</button>
             </div>
             <ul id="deletedList"></ul>

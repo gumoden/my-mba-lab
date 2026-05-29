@@ -19,7 +19,17 @@ body {
     flex-direction: column;
     gap: 24px;
     width: 100%;
-    max-width: 480px;
+    max-width: 1000px;
+}
+
+.top-row {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.top-row .card {
+    flex: 1;
 }
 
 .card {
@@ -28,6 +38,111 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 40px;
     width: 100%;
+}
+
+.email-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #ffffff;
+    color: #4299e1;
+    border: 1px solid #4299e1;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.email-btn:hover {
+    background-color: #4299e1;
+    color: #ffffff;
+}
+
+.completed-card {
+    border-top: 3px solid #68d391;
+}
+
+.completed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.completed-header h2 {
+    margin-bottom: 0;
+}
+
+.archive-btn {
+    padding: 6px 14px;
+    background-color: #68d391;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.archive-btn:hover {
+    background-color: #38a169;
+}
+
+.archived-card {
+    border-top: 3px solid #a0aec0;
+}
+
+#viewArchiveRow {
+    justify-content: center;
+}
+
+.view-archive-btn {
+    background: none;
+    border: 1px solid #a0aec0;
+    border-radius: 8px;
+    color: #718096;
+    font-size: 14px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-archive-btn:hover {
+    background-color: #edf2f7;
+    color: #2d3748;
+}
+
+.completed-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #a0aec0;
+}
+
+.complete-btn {
+    color: #68d391 !important;
+    font-size: 16px !important;
+}
+
+.complete-btn:hover {
+    color: #38a169 !important;
+}
+
+.restore-btn {
+    background: none !important;
+    border: 1px solid #cbd5e0 !important;
+    border-radius: 6px !important;
+    color: #718096 !important;
+    font-size: 13px !important;
+    padding: 4px 10px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.restore-btn:hover {
+    background-color: #edf2f7 !important;
+    color: #2d3748 !important;
 }
 
 .deleted-card {
@@ -67,10 +182,16 @@ h2 {
     font-size: 24px;
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
 .input-row {
     display: flex;
     gap: 8px;
-    margin-bottom: 24px;
 }
 
 input {
@@ -120,13 +241,34 @@ li:last-child {
     border-bottom: none;
 }
 
-li span {
+.task-info {
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
     flex: 1;
 }
 
-li.done span {
+.task-text {
+    font-size: 16px;
+}
+
+.due-date {
+    font-size: 12px;
+    color: #4299e1;
+    margin-top: 2px;
+}
+
+.due-date.overdue {
+    color: #e53e3e;
+    font-weight: bold;
+}
+
+li.done .task-text {
     text-decoration: line-through;
+    color: #a0aec0;
+}
+
+li.done .due-date {
     color: #a0aec0;
 }
 
@@ -140,12 +282,131 @@ li button {
     transition: background-color 0.2s;
 }
 
+.task-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.priority-badge {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.priority-low {
+    background-color: #c6f6d5;
+    color: #276749;
+}
+
+.priority-medium {
+    background-color: #fefcbf;
+    color: #744210;
+}
+
+.priority-high {
+    background-color: #fed7d7;
+    color: #822727;
+}
+
+select {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #4299e1;
+}
+
+.edit-priority {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
 #taskList li button {
     color: #fc8181;
 }
 
 #taskList li button:hover {
     color: #e53e3e;
+}
+
+.edit-btn {
+    color: #a0aec0 !important;
+    font-size: 16px !important;
+}
+
+.edit-btn:hover {
+    color: #4299e1 !important;
+}
+
+.edit-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.edit-row {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-text {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #4299e1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.edit-date {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.save-btn {
+    background-color: #4299e1 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+}
+
+.save-btn:hover {
+    background-color: #3182ce !important;
+}
+
+.cancel-btn {
+    background: none !important;
+    color: #a0aec0 !important;
+    border: none !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    padding: 6px 8px !important;
+}
+
+.cancel-btn:hover {
+    color: #718096 !important;
 }
 
 #deletedList li span {

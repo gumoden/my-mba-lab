@@ -1,13 +1,6 @@
 {
-  "tasks": [
-    {
-      "text": "task 1",
-      "done": false
-    },
-    {
-      "text": "task 5",
-      "done": false
-    }
-  ],
-  "deleted": []
+  "tasks": [],
+  "deleted": [],
+  "completed": [],
+  "archived": []
 }
