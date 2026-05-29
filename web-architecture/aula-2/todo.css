@@ -9,8 +9,17 @@ body {
     background-color: #f0f4f8;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
+    padding: 40px 16px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 480px;
 }
 
 .card {
@@ -19,7 +28,36 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 40px;
     width: 100%;
-    max-width: 480px;
+}
+
+.deleted-card {
+    border-top: 3px solid #fc8181;
+}
+
+.deleted-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.deleted-header h2 {
+    margin-bottom: 0;
+}
+
+.deleted-header button {
+    padding: 6px 14px;
+    background-color: #fc8181;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.deleted-header button:hover {
+    background-color: #e53e3e;
 }
 
 h2 {
@@ -95,13 +133,32 @@ li.done span {
 li button {
     background: none;
     border: none;
-    color: #fc8181;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
-    padding: 0 4px;
-    transition: color 0.2s;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
 }
 
-li button:hover {
+#taskList li button {
+    color: #fc8181;
+}
+
+#taskList li button:hover {
     color: #e53e3e;
+}
+
+#deletedList li span {
+    cursor: default;
+    color: #a0aec0;
+}
+
+#deletedList li button {
+    color: #ffffff;
+    background-color: #68d391;
+    font-size: 13px;
+}
+
+#deletedList li button:hover {
+    background-color: #48bb78;
 }
