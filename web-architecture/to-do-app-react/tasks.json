@@ -1,29 +1,6 @@
 {
-  "tasks": [
-    {
-      "text": "Task 3",
-      "dueDate": "2026-06-01",
-      "priority": "High"
-    },
-    {
-      "text": "Task 4",
-      "dueDate": "2026-06-15",
-      "priority": "Medium"
-    },
-    {
-      "text": "Task 5",
-      "dueDate": "2026-06-22",
-      "priority": "Low"
-    }
-  ],
+  "tasks": [],
   "deleted": [],
   "completed": [],
-  "archived": [
-    {
-      "text": "Task 2",
-      "dueDate": "2026-05-28",
-      "priority": "Low",
-      "completedDate": "2026-05-29"
-    }
-  ]
+  "archived": []
 }
