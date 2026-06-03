@@ -1,0 +1,682 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 16px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 1300px;
+}
+
+.main-row {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.main-row > .card,
+.main-row > .left-column {
+    flex: 1;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.left-column .income-card {
+    flex: 1;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    width: 100%;
+}
+
+/* Card color accents */
+.income-card  { border-top: 3px solid #68d391; }
+.expense-card { border-top: 3px solid #fc8181; }
+.cc-card      { border-top: 3px solid #f6ad55; }
+.account-card { border-top: 3px solid #9f7aea; }
+.summary-card { border-top: 3px solid #4299e1; }
+
+h2 {
+    text-align: center;
+    color: #2d3748;
+    margin-bottom: 24px;
+    font-size: 22px;
+}
+
+h3 {
+    color: #4a5568;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+/* Input area */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #4299e1;
+}
+
+.input-row button {
+    padding: 10px 20px;
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.input-row button:hover {
+    background-color: #3182ce;
+}
+
+/* List items */
+ul {
+    list-style: none;
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+ul::-webkit-scrollbar {
+    width: 4px;
+}
+
+ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+}
+
+ul::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+    color: #2d3748;
+    font-size: 15px;
+    gap: 8px;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 2px;
+}
+
+.item-description {
+    font-size: 15px;
+}
+
+.item-amount {
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Buttons inside list items */
+li button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    color: #fc8181;
+}
+
+li button:hover {
+    color: #e53e3e;
+}
+
+/* Toggle buttons */
+.toggle-btn {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    border: 1px solid #cbd5e0 !important;
+    border-radius: 20px !important;
+    color: #718096 !important;
+    background: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    white-space: nowrap;
+}
+
+.toggle-btn:hover {
+    background-color: #edf2f7 !important;
+}
+
+.toggle-btn.received {
+    background-color: #c6f6d5 !important;
+    border-color: #68d391 !important;
+    color: #276749 !important;
+}
+
+.toggle-btn.paid {
+    background-color: #fed7d7 !important;
+    border-color: #fc8181 !important;
+    color: #822727 !important;
+}
+
+/* Edit/Delete buttons */
+.edit-btn {
+    color: #a0aec0 !important;
+    font-size: 16px !important;
+}
+
+.edit-btn:hover {
+    color: #4299e1 !important;
+}
+
+.delete-btn {
+    color: #fc8181 !important;
+    font-size: 14px !important;
+}
+
+.delete-btn:hover {
+    color: #e53e3e !important;
+}
+
+/* Edit mode */
+.edit-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.edit-row {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-text {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #4299e1;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.edit-amount {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.save-btn {
+    background-color: #4299e1 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+}
+
+.save-btn:hover {
+    background-color: #3182ce !important;
+}
+
+.cancel-btn {
+    background: none !important;
+    color: #a0aec0 !important;
+    border: none !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    padding: 6px 8px !important;
+}
+
+.cancel-btn:hover {
+    color: #718096 !important;
+}
+
+/* Credit card item details */
+.cc-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 6px;
+}
+
+.cc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+
+.cc-details {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: #718096;
+}
+
+.cc-item .item-actions {
+    align-self: flex-end;
+    margin-top: -32px;
+}
+
+/* Card totals footer */
+.card-totals {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* Summary panel */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+}
+
+.summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #f7fafc;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.summary-income   { border-top: 3px solid #68d391; }
+.summary-expenses { border-top: 3px solid #fc8181; }
+.summary-cc       { border-top: 3px solid #f6ad55; }
+.summary-accounts { border-top: 3px solid #9f7aea; }
+
+.surplus-section {
+    background-color: #ebf8ff;
+    border-top: 3px solid #4299e1;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #4a5568;
+    padding: 4px 0;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.surplus-section .summary-row {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: none;
+}
+
+/* Color utilities */
+.positive        { color: #38a169; }
+.negative        { color: #e53e3e; }
+.summary-received { color: #a0aec0; }
+
+/* Received income item — grayed out, removed from active totals */
+li.item-received {
+    opacity: 0.45;
+}
+
+li.item-received .item-description {
+    text-decoration: line-through;
+}
+
+/* Month tabs */
+.month-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.month-tab-group {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.month-tab-group:hover {
+    border-color: #a0aec0;
+}
+
+.month-tab-group.active {
+    border-color: #4299e1;
+    background-color: #4299e1;
+}
+
+.month-tab-label {
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    color: #4a5568;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.month-tab-group.active .month-tab-label {
+    color: white;
+    font-weight: bold;
+}
+
+.tab-icon-btn {
+    padding: 8px 8px;
+    background: none;
+    border: none;
+    border-left: 1px solid #e2e8f0;
+    cursor: pointer;
+    color: #a0aec0;
+    font-size: 12px;
+    transition: background-color 0.2s, color 0.2s;
+    line-height: 1;
+}
+
+.month-tab-group.active .tab-icon-btn {
+    border-left-color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.tab-icon-btn:hover {
+    background-color: #edf2f7;
+    color: #4a5568;
+}
+
+.month-tab-group.active .tab-icon-btn:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: white;
+}
+
+.tab-delete-btn:hover {
+    background-color: #fed7d7 !important;
+    color: #e53e3e !important;
+}
+
+.month-add-btn {
+    padding: 8px 16px;
+    border: 1px dashed #cbd5e0;
+    border-radius: 8px;
+    background: none;
+    color: #a0aec0;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.month-add-btn:hover {
+    border-color: #4299e1;
+    color: #4299e1;
+}
+
+/* Copy modal */
+.copy-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.copy-modal {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.copy-modal h3 {
+    font-size: 18px;
+    color: #2d3748;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 0;
+}
+
+.copy-reset-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #4a5568;
+    cursor: pointer;
+}
+
+.copy-reset-label input[type="checkbox"] {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.copy-modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+/* Mobile month dropdown (hidden on desktop) */
+.month-dropdown-bar {
+    display: none;
+}
+
+.month-select {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #4299e1;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #2d3748;
+    background: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.month-dropdown-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.month-dropdown-actions .tab-icon-btn {
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #4a5568;
+}
+
+.month-dropdown-actions .tab-delete-btn {
+    color: #fc8181;
+}
+
+/* ── Responsive ── */
+
+/* Tablet (≤ 1100px): 2-column main row */
+@media (max-width: 1100px) {
+    .main-row {
+        flex-wrap: wrap;
+    }
+
+    .main-row > .card,
+    .main-row > .left-column {
+        flex: 1 1 calc(50% - 12px);
+    }
+
+    .left-column .income-card {
+        flex: none;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile (≤ 768px): single column */
+@media (max-width: 768px) {
+    .month-tabs        { display: none; }
+    .month-dropdown-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    body {
+        padding: 16px 12px;
+    }
+
+    .wrapper {
+        gap: 16px;
+    }
+
+    .main-row {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .main-row > .card,
+    .main-row > .left-column {
+        flex: none;
+        width: 100%;
+    }
+
+    .left-column .income-card {
+        flex: none;
+    }
+
+    .card {
+        padding: 20px 16px;
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    ul {
+        max-height: 280px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .surplus-section {
+        grid-column: 1 / -1;
+    }
+
+    .month-tab-label {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .tab-icon-btn {
+        padding: 6px 6px;
+    }
+
+    .month-add-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .input-row {
+        flex-wrap: wrap;
+    }
+
+    .cc-item .item-actions {
+        margin-top: 0;
+        align-self: flex-start;
+    }
+
+    .copy-modal {
+        min-width: unset;
+        width: 90vw;
+        padding: 24px 16px;
+    }
+}
